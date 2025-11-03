@@ -8,6 +8,13 @@ This guide will help you deploy your FastAPI backend to Render's free tier.
 - Render account (sign up at [render.com](https://render.com))
 - Your code pushed to GitHub
 
+## 📁 Important Files
+
+- `render.yaml` - Render configuration
+- `build.sh` - Python dependencies installation
+- `apt-packages.txt` - System packages (Tesseract & Poppler)
+- `requirements.txt` - Python packages
+
 ## 📋 Step-by-Step Deployment
 
 ### 1. Push Your Code to GitHub
@@ -126,9 +133,15 @@ To update environment variables:
 
 ### Common Issues
 
-**Build fails:**
+**Build fails with "Read-only file system" error:**
+- This happens if trying to use `apt-get` directly in build.sh
+- Solution: Use `apt-packages.txt` file instead (already configured)
+- System packages listed in `apt-packages.txt` are installed automatically
+
+**Other build failures:**
 - Check logs for errors
 - Ensure `build.sh` has execute permissions: `chmod +x backend/build.sh`
+- Verify all files are committed to GitHub
 
 **Service crashes:**
 - Check logs for Python errors
