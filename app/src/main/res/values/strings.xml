@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NadirCare</string>
+    <string name="select_report">Select Report</string>
+    <string name="upload_report">Upload Report</string>
+    <string name="uploading">Uploading...</string>
+    <string name="analyzing">Analyzing your report...</string>
+    <string name="recommendation">Recommendation</string>
+    <string name="no_file_selected">No file selected</string>
+    <string name="file_selected">File selected: %1$s</string>
+    <string name="error_upload_failed">Upload failed. Please try again.</string>
+    <string name="error_no_file">Please select a file first.</string>
+    <string name="admission">Hospital Admission Required</string>
+    <string name="doctor_visit">Visit Doctor</string>
+    <string name="home_medication">Home Medication</string>
+</resources>
+
