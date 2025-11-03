@@ -5,8 +5,6 @@ services:
     buildCommand: "./build.sh"
     startCommand: "uvicorn main:app --host 0.0.0.0 --port $PORT"
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.12.0
       - key: OPENAI_API_KEY
         sync: false  # You'll set this manually in Render dashboard
     healthCheckPath: /

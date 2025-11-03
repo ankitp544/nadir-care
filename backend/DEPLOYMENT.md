@@ -14,6 +14,7 @@ This guide will help you deploy your FastAPI backend to Render's free tier.
 - `build.sh` - Python dependencies installation
 - `apt-packages.txt` - System packages (Tesseract & Poppler)
 - `requirements.txt` - Python packages
+- `.python-version` - Specifies Python 3.12 (required for compatibility)
 
 ## 📋 Step-by-Step Deployment
 
@@ -138,10 +139,15 @@ To update environment variables:
 - Solution: Use `apt-packages.txt` file instead (already configured)
 - System packages listed in `apt-packages.txt` are installed automatically
 
+**Pillow build errors / Python version issues:**
+- Error: "KeyError: '__version__'" when building Pillow
+- Solution: `.python-version` file ensures Python 3.12 is used (already configured)
+- Python 3.13+ might have compatibility issues with some packages
+
 **Other build failures:**
 - Check logs for errors
 - Ensure `build.sh` has execute permissions: `chmod +x backend/build.sh`
-- Verify all files are committed to GitHub
+- Verify all files are committed to GitHub (including `.python-version`)
 
 **Service crashes:**
 - Check logs for Python errors
