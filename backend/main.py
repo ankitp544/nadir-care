@@ -2,10 +2,31 @@ from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import uvicorn
+import shutil
+import os
 from report_processor import process_medical_report
 from recommendation_engine import get_recommendation
 
 app = FastAPI(title="MedDiagnose API", version="1.0.0")
+
+# Verify system dependencies on startup
+@app.on_event("startup")
+async def startup_event():
+    print("=== System Dependencies Check ===")
+    tesseract_path = shutil.which('tesseract')
+    pdftotext_path = shutil.which('pdftotext')
+    
+    if tesseract_path:
+        print(f"✓ Tesseract found at: {tesseract_path}")
+    else:
+        print("✗ WARNING: Tesseract not found in PATH!")
+        
+    if pdftotext_path:
+        print(f"✓ Poppler (pdftotext) found at: {pdftotext_path}")
+    else:
+        print("✗ WARNING: Poppler not found in PATH!")
+    
+    print("===================================")
 
 # Configure CORS
 app.add_middleware(

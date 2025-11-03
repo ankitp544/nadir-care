@@ -4,7 +4,18 @@ import pytesseract
 from pdf2image import convert_from_bytes
 import openai
 import os
+import shutil
 from typing import Dict, Any, Optional
+
+# Configure tesseract path for different environments
+if shutil.which('tesseract'):
+    pytesseract.pytesseract.tesseract_cmd = shutil.which('tesseract')
+else:
+    # Try common paths
+    for path in ['/usr/bin/tesseract', '/usr/local/bin/tesseract']:
+        if os.path.exists(path):
+            pytesseract.pytesseract.tesseract_cmd = path
+            break
 
 # Lazy initialization of OpenAI client
 # Set your API key in environment variable: OPENAI_API_KEY
