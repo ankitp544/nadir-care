@@ -69,7 +69,7 @@ Should return: `{"message":"NadirCare API is running"}`
    ipconfig getifaddr en0  # macOS
    ```
    
-2. Update `app/src/main/kotlin/com/meddiagnose/app/RetrofitClient.kt`:
+2. Update `app/src/main/kotlin/com/nadircare/app/RetrofitClient.kt`:
    ```kotlin
    private const val BASE_URL = "http://YOUR_IP:8000/"
    ```
@@ -134,7 +134,7 @@ Should return: `{"message":"NadirCare API is running"}`
 
 ### Check Logcat
 - **View > Tool Windows > Logcat** in Android Studio
-- Filter by: `com.meddiagnose.app`
+- Filter by: `com.nadircare.app`
 - Look for network errors or API responses
 
 ### Backend Logs

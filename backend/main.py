@@ -7,7 +7,7 @@ import os
 from report_processor import process_medical_report
 from recommendation_engine import get_recommendation
 
-app = FastAPI(title="MedDiagnose API", version="1.0.0")
+app = FastAPI(title="NadirCare API", version="1.0.0")
 
 # Verify system dependencies on startup
 @app.on_event("startup")
@@ -39,7 +39,7 @@ app.add_middleware(
 
 @app.get("/")
 async def root():
-    return {"message": "MedDiagnose API is running"}
+    return {"message": "NadirCare API is running"}
 
 @app.post("/upload")
 async def upload_report(file: UploadFile = File(...)):

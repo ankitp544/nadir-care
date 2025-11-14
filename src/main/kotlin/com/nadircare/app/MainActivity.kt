@@ -1,4 +1,4 @@
-package com.meddiagnose.app
+package com.nadircare.app
 
 import android.content.Intent
 import android.net.Uri
@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.meddiagnose.app.databinding.ActivityMainBinding
+import com.nadircare.app.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody

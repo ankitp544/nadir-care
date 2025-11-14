@@ -1,4 +1,4 @@
-package com.meddiagnose.app
+package com.nadircare.app
 
 import com.google.gson.annotations.SerializedName
 

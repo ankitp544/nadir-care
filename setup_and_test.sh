@@ -1,40 +1,18 @@
 #!/bin/bash
 
-# Complete setup and test script for MedDiagnose
+# Complete setup and test script for NadirCare
 
-echo "🚀 MedDiagnose - Setup and Test Script"
+echo "🚀 NadirCare - Setup and Test Script"
 echo "========================================"
 echo ""
 
 # Check if we're in the right directory
 if [ ! -d "backend" ] || [ ! -d "app" ]; then
-    echo "❌ Error: Please run this script from the MedDiagnose project root"
+    echo "❌ Error: Please run this script from the NadirCare    project root"
     exit 1
 fi
-
-# Step 1: Setup Backend
-echo "📦 Step 1: Setting up backend..."
-cd backend
-
-# Create virtual environment if it doesn't exist
-if [ ! -d "venv" ]; then
-    echo "   Creating virtual environment..."
-    python3 -m venv venv
-fi
-
 # Activate virtual environment
 source venv/bin/activate
-
-# Install dependencies
-echo "   Installing Python dependencies..."
-pip install -q -r requirements.txt
-
-if [ $? -eq 0 ]; then
-    echo "   ✅ Backend dependencies installed"
-else
-    echo "   ❌ Failed to install dependencies"
-    exit 1
-fi
 
 # Check for Tesseract
 echo ""
@@ -47,12 +25,12 @@ else
     echo ""
 fi
 
-# Check for OpenAI API key
-if [ -z "$OPENAI_API_KEY" ]; then
-    echo "   ⚠️  OPENAI_API_KEY not set (optional - app will work with mock data)"
-    echo "   Set with: export OPENAI_API_KEY=your_key_here"
+# Check for Anthropic API key
+if [ -z "$ANTHROPIC_API_KEY" ]; then
+    echo "   ⚠️  ANTHROPIC_API_KEY not set (optional - app will work with mock data)"
+    echo "   Set with: export ANTHROPIC_API_KEY=your_key_here"
 else
-    echo "   ✅ OPENAI_API_KEY is set"
+    echo "   ✅ ANTHROPIC_API_KEY is set"
 fi
 
 cd ..

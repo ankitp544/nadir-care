@@ -1,4 +1,4 @@
-package com.meddiagnose.app
+package com.nadircare.app
 
 import okhttp3.MultipartBody
 import retrofit2.Response

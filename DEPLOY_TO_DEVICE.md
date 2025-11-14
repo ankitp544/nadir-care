@@ -280,7 +280,7 @@ hostname -I
 
 ### Uninstall App
 ```bash
-adb uninstall com.meddiagnose.app
+adb uninstall com.nadircare.app
 ```
 
 ---

@@ -7,7 +7,7 @@ A simple Android app that allows patients to upload medical reports (image/PDF) 
 ```
 NadirCare/
 ├── src/main/              # Android app source code
-│   ├── kotlin/com/meddiagnose/app/
+│   ├── kotlin/com/nadircare/app/
 │   │   ├── MainActivity.kt
 │   │   ├── ApiService.kt
 │   │   ├── ResponseModel.kt
@@ -53,7 +53,7 @@ pip install -r requirements.txt
 
 4. Set up environment variable (optional, for GenAI integration):
 ```bash
-export OPENAI_API_KEY=your_api_key_here
+export ANTHROPIC_API_KEY=your_api_key_here
 ```
 
 5. Run the server:
@@ -67,7 +67,7 @@ The API will be available at `http://localhost:8000`
 
 - **File Upload**: Select and upload medical reports (JPG, PNG, PDF)
 - **Text Extraction**: OCR processing for images and PDFs
-- **GenAI Analysis**: OpenAI GPT-4 parsing of medical text
+- **GenAI Analysis**: Anthropic Claude 3.5 Sonnet parsing of medical text
 - **Recommendation Engine**: Rule-based categorization:
   - **ADMISSION**: Critical conditions requiring hospital stay
   - **DOCTOR_VISIT**: Moderate conditions requiring consultation

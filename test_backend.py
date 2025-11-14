@@ -54,7 +54,7 @@ def test_upload_sample(file_path):
         return False
 
 if __name__ == "__main__":
-    print("🧪 Testing MedDiagnose Backend API\n")
+    print("🧪 Testing NadirCare Backend API\n")
     
     # Test health endpoint
     if not test_backend_health():

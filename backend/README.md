@@ -21,7 +21,7 @@ Server runs at: `http://localhost:8000`
 
 ### Environment Variables
 
-- `OPENAI_API_KEY` (optional) - Your OpenAI API key for GPT-4 analysis
+- `ANTHROPIC_API_KEY` (optional) - Your Anthropic API key for Claude analysis
   - If not set, the API will use mock data
 
 ## 🌐 Cloud Deployment
@@ -50,7 +50,7 @@ Health check endpoint.
 **Response:**
 ```json
 {
-  "message": "MedDiagnose API is running"
+  "message": "NadirCare API is running"
 }
 ```
 
@@ -87,7 +87,7 @@ curl -X POST http://localhost:8000/upload \
 - **Tesseract OCR** - Text extraction from images
 - **Poppler** - PDF processing
 - **Pillow** - Image processing
-- **OpenAI GPT-4** - Medical report analysis (optional)
+- **Anthropic Claude 3.5 Sonnet** - Medical report analysis (optional)
 
 ## 📂 Project Structure
 
@@ -135,7 +135,7 @@ ipconfig getifaddr en0
 
 ## 🔒 Security
 
-- Set `OPENAI_API_KEY` in environment variables (never commit to git)
+- Set `ANTHROPIC_API_KEY` in environment variables (never commit to git)
 - Update CORS settings in `main.py` for production
 - Use HTTPS in production (Render provides free SSL)
 
@@ -143,7 +143,7 @@ ipconfig getifaddr en0
 
 - OCR accuracy depends on image quality
 - PDF processing requires Poppler
-- Without OpenAI API key, mock data is returned
+- Without Anthropic API key, mock data is returned
 - First request after cold start may be slow (free tier limitation)
 
 ## 🆘 Troubleshooting
@@ -167,7 +167,7 @@ lsof -ti:8000 | xargs kill -9
 
 - [FastAPI Documentation](https://fastapi.tiangolo.com)
 - [Render Documentation](https://render.com/docs)
-- [OpenAI API Documentation](https://platform.openai.com/docs)
+- [Anthropic API Documentation](https://docs.anthropic.com)
 
 ---
 

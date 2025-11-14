@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Script to start the MedDiagnose backend server
+# Script to start the NadirCare backend server
 
-echo "🚀 Starting MedDiagnose Backend Server..."
+echo "🚀 Starting NadirCare Backend Server..."
 echo ""
 
 # Navigate to backend directory
@@ -31,11 +31,11 @@ if ! command -v tesseract &> /dev/null; then
     echo ""
 fi
 
-# Check for OpenAI API key
-if [ -z "$OPENAI_API_KEY" ]; then
-    echo "⚠️  Warning: OPENAI_API_KEY not set"
+# Check for Anthropic API key
+if [ -z "$ANTHROPIC_API_KEY" ]; then
+    echo "⚠️  Warning: ANTHROPIC_API_KEY not set"
     echo "   GenAI features will use mock data"
-    echo "   Set with: export OPENAI_API_KEY=your_key_here"
+    echo "   Set with: export ANTHROPIC_API_KEY=your_key_here"
     echo ""
 fi
 

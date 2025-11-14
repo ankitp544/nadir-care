@@ -55,10 +55,10 @@ Click **"Advanced"** → **"Add Environment Variable"**:
 
 | Key | Value | Notes |
 |-----|-------|-------|
-| `OPENAI_API_KEY` | `your-actual-api-key` | Your OpenAI API key (optional) |
+| `ANTHROPIC_API_KEY` | `your-actual-api-key` | Your Anthropic API key (optional) |
 | `PYTHON_VERSION` | `3.12.0` | Python version |
 
-**Note**: If you don't have an OpenAI API key, the backend will work with mock data.
+**Note**: If you don't have an Anthropic API key, the backend will work with mock data.
 
 ### 5. Deploy!
 
@@ -82,13 +82,13 @@ Test it:
 curl https://nadircare-backend.onrender.com/
 ```
 
-Should return: `{"message":"MedDiagnose API is running"}`
+Should return: `{"message":"NadirCare API is running"}`
 
 ## 🔧 Update Android App
 
 Update the backend URL in your Android app:
 
-**File**: `app/src/main/kotlin/com/meddiagnose/app/RetrofitClient.kt`
+**File**: `app/src/main/kotlin/com/nadircare/app/RetrofitClient.kt`
 
 Change:
 ```kotlin

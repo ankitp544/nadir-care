@@ -1,4 +1,4 @@
-package com.meddiagnose.app
+package com.nadircare.app
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

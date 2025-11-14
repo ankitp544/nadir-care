@@ -127,7 +127,7 @@ brew install tesseract
 - Check network permissions in AndroidManifest.xml
 
 **Connection refused:**
-- Ensure backend URL in `app/src/main/kotlin/com/meddiagnose/app/RetrofitClient.kt` is `http://10.0.2.2:8000`
+- Ensure backend URL in `app/src/main/kotlin/com/nadircare/app/RetrofitClient.kt` is `http://10.0.2.2:8000`
 - Verify backend is running on port 8000
 - Test from emulator browser: Open Chrome in emulator → `http://10.0.2.2:8000/`
 
@@ -146,7 +146,7 @@ python test_backend.py /path/to/test/file.pdf
 
 - **Emulator uses `10.0.2.2`** to access your computer's `localhost:8000`
 - **Physical devices** need your computer's IP address (update in RetrofitClient.kt)
-- **GenAI features** require OpenAI API key (optional - works without it using mock data)
+- **GenAI features** require Anthropic API key (optional - works without it using mock data)
 - Backend must be running before testing app
 
 ## ✅ Success Checklist

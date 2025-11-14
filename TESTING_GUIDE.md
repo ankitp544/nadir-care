@@ -34,9 +34,9 @@ This guide will help you test the Android app in an emulator.
    pip install -r requirements.txt
    ```
 
-4. (Optional) Set OpenAI API key for GenAI features:
+4. (Optional) Set Anthropic API key for GenAI features:
    ```bash
-   export OPENAI_API_KEY=your_api_key_here
+   export ANTHROPIC_API_KEY=your_api_key_here
    ```
 
 ## Step 2: Start the Backend Server
@@ -87,7 +87,7 @@ Wait for the emulator to fully boot.
 
 The app is already configured to use `http://10.0.2.2:8000` which is the Android emulator's way of accessing `localhost:8000` on your computer.
 
-**Verify in**: `app/src/main/kotlin/com/meddiagnose/app/RetrofitClient.kt`
+**Verify in**: `app/src/main/kotlin/com/nadircare/app/RetrofitClient.kt`
 - Should have: `private const val BASE_URL = "http://10.0.2.2:8000/"`
 
 ## Step 6: Build and Run the App
@@ -172,6 +172,6 @@ curl -X POST "http://localhost:8000/upload" \
 
 - The backend must be running before testing the app
 - Use `10.0.2.2` for emulator, your computer's IP for physical devices
-- GenAI features require OpenAI API key (optional - app will work without it using mock data)
+- GenAI features require Anthropic API key (optional - app will work without it using mock data)
 - For production, update CORS settings in `backend/main.py`
 

@@ -2,7 +2,7 @@ import io
 from PIL import Image
 import pytesseract
 from pdf2image import convert_from_bytes
-import openai
+import anthropic
 import os
 import shutil
 from typing import Dict, Any, Optional
@@ -17,22 +17,22 @@ else:
             pytesseract.pytesseract.tesseract_cmd = path
             break
 
-# Lazy initialization of OpenAI client
-# Set your API key in environment variable: OPENAI_API_KEY
-_openai_client: Optional[openai.OpenAI] = None
+# Lazy initialization of Anthropic client
+# Set your API key in environment variable: ANTHROPIC_API_KEY
+_anthropic_client: Optional[anthropic.Anthropic] = None
 
-def get_openai_client() -> Optional[openai.OpenAI]:
-    """Get or create OpenAI client if API key is available."""
-    global _openai_client
-    if _openai_client is None:
-        api_key = os.getenv("OPENAI_API_KEY", "")
+def get_anthropic_client() -> Optional[anthropic.Anthropic]:
+    """Get or create Anthropic client if API key is available."""
+    global _anthropic_client
+    if _anthropic_client is None:
+        api_key = os.getenv("ANTHROPIC_API_KEY", "")
         if api_key:
             try:
-                _openai_client = openai.OpenAI(api_key=api_key)
+                _anthropic_client = anthropic.Anthropic(api_key=api_key)
             except Exception as e:
-                print(f"Warning: Could not initialize OpenAI client: {e}")
+                print(f"Warning: Could not initialize Anthropic client: {e}")
                 return None
-    return _openai_client
+    return _anthropic_client
 
 
 async def extract_text_from_image(image_bytes: bytes) -> str:
@@ -77,12 +77,12 @@ async def extract_text_from_pdf(pdf_bytes: bytes) -> str:
 
 async def parse_with_genai(text: str) -> Dict[str, Any]:
     """
-    Use OpenAI to parse medical report text and extract structured data.
+    Use Anthropic Claude to parse medical report text and extract structured data.
     """
-    openai_client = get_openai_client()
+    anthropic_client = get_anthropic_client()
     
-    if not openai_client:
-        print("Warning: OpenAI API key not set. Using mock data.")
+    if not anthropic_client:
+        print("Warning: Anthropic API key not set. Using mock data.")
         return {
             "conditions": ["Mild symptoms"],
             "test_results": [],
@@ -106,18 +106,18 @@ Medical Report Text:
 
 Only return the JSON object, no additional text."""
 
-        response = openai_client.chat.completions.create(
-            model="gpt-4",
-            messages=[
-                {"role": "system", "content": "You are a medical report analyzer. Extract structured information from medical reports."},
-                {"role": "user", "content": prompt}
-            ],
+        message = anthropic_client.messages.create(
+            model="claude-3-5-sonnet-20241022",
+            max_tokens=1000,
             temperature=0.3,
-            max_tokens=1000
+            system="You are a medical report analyzer. Extract structured information from medical reports.",
+            messages=[
+                {"role": "user", "content": prompt}
+            ]
         )
         
         # Parse the response
-        result_text = response.choices[0].message.content.strip()
+        result_text = message.content[0].text.strip()
         
         # Try to extract JSON from the response
         import json
