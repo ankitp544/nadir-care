@@ -2,31 +2,10 @@ from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import uvicorn
-import shutil
-import os
 from report_processor import process_medical_report
 from recommendation_engine import get_recommendation
 
 app = FastAPI(title="NadirCare API", version="1.0.0")
-
-# Verify system dependencies on startup
-@app.on_event("startup")
-async def startup_event():
-    print("=== System Dependencies Check ===")
-    tesseract_path = shutil.which('tesseract')
-    pdftotext_path = shutil.which('pdftotext')
-    
-    if tesseract_path:
-        print(f"✓ Tesseract found at: {tesseract_path}")
-    else:
-        print("✗ WARNING: Tesseract not found in PATH!")
-        
-    if pdftotext_path:
-        print(f"✓ Poppler (pdftotext) found at: {pdftotext_path}")
-    else:
-        print("✗ WARNING: Poppler not found in PATH!")
-    
-    print("===================================")
 
 # Configure CORS
 app.add_middleware(
@@ -53,14 +32,14 @@ async def upload_report(file: UploadFile = File(...)):
         
         content_type = file.content_type.lower()
         allowed_types = [
-            "image/jpeg", "image/jpg", "image/png",
-            "application/pdf"
+            "image/jpeg", "image/jpg", "image/png"
+            # "application/pdf"
         ]
         
         if content_type not in allowed_types:
             raise HTTPException(
                 status_code=400,
-                detail=f"File type {content_type} not supported. Please upload JPG, PNG, or PDF."
+                detail=f"File type {content_type} not supported. Please upload JPG or PNG."
             )
         
         # Read file contents
@@ -79,7 +58,6 @@ async def upload_report(file: UploadFile = File(...)):
     except HTTPException:
         raise
     except ValueError as e:
-        # Poppler or other setup-related errors
         print(f"Setup error: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
     except Exception as e:

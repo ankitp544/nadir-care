@@ -10,8 +10,7 @@ FastAPI backend for medical report analysis using OCR and AI.
 # Install dependencies
 pip install -r requirements.txt
 
-# Install system dependencies (macOS)
-brew install tesseract poppler
+# No system dependencies required
 
 # Run the server
 python main.py
@@ -37,8 +36,6 @@ See **[DEPLOYMENT.md](DEPLOYMENT.md)** for complete deployment guide to Render (
 5. Deploy!
 
 Render will automatically:
-- Install Tesseract OCR
-- Install Poppler (PDF processing)
 - Install Python dependencies
 - Start your API
 
@@ -84,8 +81,6 @@ curl -X POST http://localhost:8000/upload \
 
 - **FastAPI** - Modern Python web framework
 - **Uvicorn** - ASGI server
-- **Tesseract OCR** - Text extraction from images
-- **Poppler** - PDF processing
 - **Pillow** - Image processing
 - **Anthropic Claude 3.5 Sonnet** - Medical report analysis (optional)
 
@@ -141,22 +136,10 @@ ipconfig getifaddr en0
 
 ## 📝 Notes
 
-- OCR accuracy depends on image quality
-- PDF processing requires Poppler
 - Without Anthropic API key, mock data is returned
 - First request after cold start may be slow (free tier limitation)
 
 ## 🆘 Troubleshooting
-
-**Tesseract not found:**
-```bash
-brew install tesseract
-```
-
-**Poppler not found:**
-```bash
-brew install poppler
-```
 
 **Port 8000 already in use:**
 ```bash

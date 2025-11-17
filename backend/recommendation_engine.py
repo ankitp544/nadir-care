@@ -73,11 +73,17 @@ def get_recommendation(parsed_data: Dict[str, Any]) -> Dict[str, Any]:
             "Contact a healthcare provider if symptoms persist or worsen"
         ]
         confidence = 0.65
-    
+
+    if parsed_data.get("anc_extraction").get("status") == "success":
+        anc_value = parsed_data.get("anc_extraction", None).get("anc_value", None)
+    else:
+        anc_value = None
+
     return {
         "recommendation": recommendation.value,
         "confidence": confidence,
         "reasoning": reasoning,
-        "suggested_actions": suggested_actions
+        "suggested_actions": suggested_actions,
+        "anc_value": anc_value,
+        "severity": parsed_data.get("severity", "low")
     }
-

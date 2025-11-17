@@ -1,0 +1,53 @@
+You will be analyzing an image of a Complete Blood Count (CBC) report to identify and extract the Absolute Neutrophil Count value.
+
+<image>
+
+{{IMAGE}}
+
+</image>
+
+Your task is to carefully examine this CBC report image and locate the Absolute Neutrophil Count value, which should be expressed in per microliter (μL) or per microliter equivalent units.
+
+Here are important guidelines for completing this task:
+
+- Look for terms such as "Absolute Neutrophil Count", "ANC", "Neutrophils (Absolute)", "Abs Neutrophils", or similar variations
+
+- The value is typically expressed in units like "/μL", "/mcL", "per μL", "per microliter", "K/μL", or "×10³/μL"
+
+- Pay attention to both the numerical value and its units
+
+- CBC reports may have different layouts, so scan the entire document systematically
+
+- Some reports may show neutrophils as both a percentage and an absolute count - you need the absolute count
+
+- If there are multiple neutrophil-related values, focus specifically on the absolute count, not the percentage
+
+Before providing your final answer, use the scratchpad below to work through your analysis:
+
+
+After your analysis, provide your final answer in the following format:
+
+If you successfully locate the Absolute Neutrophil Count:
+
+<answer>
+
+[numerical value] per microliter
+
+</answer>
+
+If you cannot locate the Absolute Neutrophil Count in the image:
+
+<answer>
+
+Absolute Neutrophil Count not found in this image
+
+</answer>
+
+If the image is unclear or unreadable:
+
+<answer>
+
+Image is too unclear to read the Absolute Neutrophil Count
+
+</answer>
+

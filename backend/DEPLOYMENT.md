@@ -12,7 +12,7 @@ This guide will help you deploy your FastAPI backend to Render's free tier.
 
 - `render.yaml` - Render configuration
 - `build.sh` - Python dependencies installation
-- `apt-packages.txt` - System packages (Tesseract & Poppler)
+- `apt-packages.txt` - System packages (if needed)
 - `requirements.txt` - Python packages
 - `.python-version` - Specifies Python 3.12 (required for compatibility)
 
@@ -65,7 +65,7 @@ Click **"Advanced"** → **"Add Environment Variable"**:
 1. Click **"Create Web Service"**
 2. Render will automatically:
    - Clone your repository
-   - Run the build script (installs Tesseract & Poppler)
+   - Run the build script
    - Install Python dependencies
    - Start your FastAPI server
 3. Wait 5-10 minutes for first deployment
@@ -144,13 +144,6 @@ To update environment variables:
 - Solution: `.python-version` file ensures Python 3.12 is used (already configured)
 - Python 3.13+ might have compatibility issues with some packages
 
-**Tesseract not found errors:**
-- Error: "tesseract is not installed or it's not in your PATH"
-- Check build logs for "Verifying system dependencies..."
-- Ensure `apt-packages.txt` includes: `tesseract-ocr`, `tesseract-ocr-eng`, `libtesseract-dev`
-- Check startup logs for "System Dependencies Check" to see if tesseract was found
-- May need to trigger a manual deploy after fixing `apt-packages.txt`
-
 **Other build failures:**
 - Check logs for errors
 - Ensure `build.sh` has execute permissions: `chmod +x backend/build.sh`
@@ -159,7 +152,6 @@ To update environment variables:
 **Service crashes:**
 - Check logs for Python errors
 - Verify all dependencies are in `requirements.txt`
-- Check startup logs for system dependencies (tesseract, poppler)
 
 **Slow response:**
 - Service may be sleeping (free tier limitation)

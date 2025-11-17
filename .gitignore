@@ -65,4 +65,4 @@ local.properties
 # Misc
 *.orig
 .gradletasknamecache
-
+.env
