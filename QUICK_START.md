@@ -23,11 +23,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Install Tesseract OCR:
-```bash
-brew install tesseract
-```
-
 ### 2. Start Backend Server
 
 **Option A: Use the helper script**
@@ -103,11 +98,6 @@ lsof -ti:8000 | xargs kill -9
 ```bash
 cd backend
 pip install -r requirements.txt
-```
-
-**Tesseract not found:**
-```bash
-brew install tesseract
 ```
 
 ### Android Build Issues

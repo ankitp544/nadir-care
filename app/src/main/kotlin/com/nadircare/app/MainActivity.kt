@@ -13,6 +13,8 @@ import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import okhttp3.MultipartBody
+import com.google.gson.Gson
+import retrofit2.HttpException
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -60,7 +62,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openFilePicker() {
-        filePickerLauncher.launch("application/pdf,image/*")
+        filePickerLauncher.launch("image/*")
     }
 
     private fun uploadFile(uri: Uri) {
@@ -75,10 +77,9 @@ class MainActivity : AppCompatActivity() {
                 
                 // Determine media type
                 val mediaType = when {
-                    file.name.endsWith(".pdf", ignoreCase = true) -> "application/pdf".toMediaTypeOrNull()
                     file.name.endsWith(".jpg", ignoreCase = true) || file.name.endsWith(".jpeg", ignoreCase = true) -> "image/jpeg".toMediaTypeOrNull()
                     file.name.endsWith(".png", ignoreCase = true) -> "image/png".toMediaTypeOrNull()
-                    else -> "application/octet-stream".toMediaTypeOrNull()
+                    else -> "image/jpeg".toMediaTypeOrNull() // Default to JPEG for other image types
                 }
 
                 val requestFile = RequestBody.create(mediaType, file)
@@ -90,9 +91,15 @@ class MainActivity : AppCompatActivity() {
                     val result = response.body()!!
                     displayResults(result)
                 } else {
-                    showError(response.message() ?: getString(R.string.error_upload_failed))
+                    val errorMessage = extractErrorMessage(response.errorBody())
+                    showError(errorMessage ?: getString(R.string.error_upload_failed))
                 }
                 
+                showLoading(false)
+            } catch (e: HttpException) {
+                e.printStackTrace()
+                val errorMessage = extractErrorMessage(e.response()?.errorBody())
+                showError(errorMessage ?: getString(R.string.error_upload_failed))
                 showLoading(false)
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -168,6 +175,19 @@ class MainActivity : AppCompatActivity() {
         binding.cardError.visibility = View.GONE
     }
 
+    private fun extractErrorMessage(errorBody: okhttp3.ResponseBody?): String? {
+        return try {
+            errorBody?.string()?.let { errorJson ->
+                val gson = Gson()
+                val errorResponse = gson.fromJson(errorJson, ErrorResponse::class.java)
+                errorResponse.detail
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
     private fun getFileName(uri: Uri): String {
         var result: String? = null
         if (uri.scheme == "content") {
@@ -188,7 +208,7 @@ class MainActivity : AppCompatActivity() {
                 result = result?.substring(cut!! + 1)
             }
         }
-        return result ?: "report_${System.currentTimeMillis()}.pdf"
+        return result ?: "report_${System.currentTimeMillis()}.jpg"
     }
 }
 

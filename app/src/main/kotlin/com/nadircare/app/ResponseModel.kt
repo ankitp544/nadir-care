@@ -27,3 +27,8 @@ enum class RecommendationType {
     HOME_MEDICATION
 }
 
+data class ErrorResponse(
+    @SerializedName("detail")
+    val detail: String?
+)
+

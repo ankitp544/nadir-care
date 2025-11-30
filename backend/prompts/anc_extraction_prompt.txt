@@ -16,14 +16,20 @@ Here are important guidelines for completing this task:
 
 - Pay attention to both the numerical value and its units
 
+- **CRITICAL: Handle number formats correctly:**
+  - If the value is shown as "K/μL" (e.g., "2.03 K/μL"), multiply by 1000 to get the actual value (2.03 K/μL = 2030 per microliter)
+  - If the value includes "×10³" or "×10^3", multiply the number by 1000 (e.g., "2.03 ×10³/μL" = 2030 per microliter)
+  - If the value has a comma as a thousands separator (e.g., "2,030"), preserve it as 2030 (do not interpret the comma as a decimal point)
+  - If the value appears as a whole number like "2030" or "2030.0", report it as 2030 (not 2.03)
+  - Always report the final value in standard per microliter units (without multipliers like K or ×10³)
+
 - CBC reports may have different layouts, so scan the entire document systematically
 
 - Some reports may show neutrophils as both a percentage and an absolute count - you need the absolute count
 
 - If there are multiple neutrophil-related values, focus specifically on the absolute count, not the percentage
 
-Before providing your final answer, use the scratchpad below to work through your analysis:
-
+- **Important:** When extracting the numerical value, ensure you preserve the full magnitude. For example, if you see "2030", "2,030", "2.03 K/μL", or "2.03 ×10³/μL", all should be reported as "2030 per microliter" (not "2.03 per microliter")
 
 After your analysis, provide your final answer in the following format:
 
